@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASPIRE — Live slide presentations, accessible in real time</title>
+<meta name="description" content="ASPIRE describes each new slide of a live presentation with AI and speaks it into the presenter's own pauses, so blind and low-vision listeners follow along within seconds. Peer-reviewed at DIS 2026 (Best Paper Honorable Mention) and ASSETS 2026. Built at Stevens Institute of Technology.">
+<link rel="canonical" href="https://azizulhaque.me/aspire/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ASPIRE — Live slide presentations, accessible in real time">
+<meta property="og:description" content="AI-spoken slide descriptions folded into a live talk, within seconds of live. Comprehension for blind and low-vision listeners rose from 50% to 89% in a peer-reviewed study.">
+<meta property="og:url" content="https://azizulhaque.me/aspire/">
+<meta name="theme-color" content="#005AEE">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>/* apply saved theme before paint to avoid a flash */(function(){try{var t=localStorage.getItem('aspire-theme');if(t&&t!=='system')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"ASPIRE","url":"https://azizulhaque.me/aspire/","description":"Real-time AI slide descriptions for blind and low-vision audiences of live presentations.","founders":[{"@type":"Person","name":"Azizul Haque"},{"@type":"Person","name":"Jonggi Hong"}],"parentOrganization":{"@type":"CollegeOrUniversity","name":"Stevens Institute of Technology"},"email":"ahaque3@stevens.edu"}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="https://github.com/meazizul/ASPIRE">Open-source reference implementation on GitHub</a>
+    <div class="topbar-right">
+      <div class="theme-menu">
+        <button id="theme-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="theme-menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+          Switch color mode
+        </button>
+        <div id="theme-menu" class="theme-options" role="group" aria-label="Color mode">
+          <button type="button" data-theme="light" aria-pressed="false">Light theme</button>
+          <button type="button" data-theme="dark" aria-pressed="false">Dark theme</button>
+          <button type="button" data-theme="contrast" aria-pressed="false">High contrast</button>
+          <button type="button" data-theme="system" aria-pressed="true">System</button>
+        </div>
+      </div>
+      <span class="sep" aria-hidden="true">|</span>
+      <a href="mailto:ahaque3@stevens.edu?subject=ASPIRE">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        Contact
+      </a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="ASPIRE home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="10" width="56" height="44" rx="10" fill="#005AEE"/><rect x="12" y="30" width="5" height="12" rx="2.5" fill="#F8F8FF"/><rect x="21" y="24" width="5" height="24" rx="2.5" fill="#F8F8FF"/><rect x="30" y="18" width="5" height="36" rx="2.5" fill="#ED9F10"/><rect x="39" y="22" width="5" height="28" rx="2.5" fill="#F8F8FF"/><rect x="48" y="28" width="5" height="16" rx="2.5" fill="#F8F8FF"/></svg>
+      ASPIRE
+    </a>
+    <nav aria-label="Primary">
+      <ul id="nav-links" class="nav-links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#demo">Hear it</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#market">Why now</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-amber btn-sm" href="#investors">For investors</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top" aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="ocard hero-card">
+        <span class="eyebrow">Accessible Slide Presentation via Intelligent Real-time Editing</span>
+        <h1 id="hero-h">Live presentations the whole audience can follow</h1>
+        <p class="lede">ASPIRE listens to a talk as it happens, describes each new slide with AI, and speaks that description into the presenter's own pauses. Blind and low-vision listeners hear the slides within seconds of live, on their own phone.</p>
+        <div class="hero-actions">
+          <a class="btn btn-amber" href="#demo">Hear a live sample</a>
+          <a class="btn btn-outline" href="#investors">Request the investor deck</a>
+        </div>
+        <div class="hero-proof" aria-label="Highlights">
+          <span class="pill">DIS 2026 · Best Paper Honorable Mention</span>
+          <span class="pill">ASSETS 2026 demo</span>
+          <span class="pill">Stevens Institute of Technology</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-top"><span>ASPIRE · Listen</span><span class="live-pill"><i></i>LIVE</span></div>
+            <div class="phone-title">Keynote: Learning from Accessible Design</div>
+            <div class="wave"><i style="animation-delay:0s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.4s"></i><i style="animation-delay:.5s"></i><i style="animation-delay:.6s"></i><i style="animation-delay:.7s"></i><i style="animation-delay:.8s"></i><i style="animation-delay:.9s"></i><i style="animation-delay:1s"></i><i style="animation-delay:1.1s"></i><i style="animation-delay:1.2s"></i><i style="animation-delay:1.3s"></i><i style="animation-delay:1.4s"></i><i style="animation-delay:1.5s"></i></div>
+            <ul class="slide-log">
+              <li><span class="t">14:21:05 · slide 3</span>Timeline of accessibility law from 1990 to 2026, four milestones.</li>
+              <li><span class="t">14:23:48 · slide 4</span>Bar chart: screen-reader users by device, phone highest at 61 percent.</li>
+              <li class="now"><span class="t">now speaking · slide 5</span>Photo of a lecture hall; quote on screen: "Access is a design decision."</li>
+            </ul>
+            <div class="phone-metrics">
+              <div><b>0.6 s</b><span>behind live</span></div>
+              <div><b>5</b><span>slides spoken</span></div>
+              <div><b>0</b><span>dropouts</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BENEFITS ============ -->
+  <section id="benefits" aria-labelledby="benefits-h">
+    <div class="wrap">
+      <span class="eyebrow">Why ASPIRE</span>
+      <h2 id="benefits-h">Real slides. Real time. Real understanding.</h2>
+      <div class="benefits">
+        <div class="benefit reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Within seconds of live</h3>
+          <p>Median listener delay is 4 seconds, measured with real listeners connected. Not a transcript after the talk.</p>
+        </div>
+        <div class="benefit reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16v10H4zM8 20h8"/></svg></div>
+          <h3>Every new slide, described once</h3>
+          <p>Slide changes are detected automatically. Build-up animations and repeated slides are recognised, so nothing is read twice.</p>
+        </div>
+        <div class="benefit reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h3l3-7 4 14 3-7h5"/></svg></div>
+          <h3>Never talks over the speaker</h3>
+          <p>Descriptions are placed in the presenter's natural pauses. The held speech is returned faster than real time with its pitch intact.</p>
+        </div>
+        <div class="benefit reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+          <h3>Nothing to install for listeners</h3>
+          <p>Listeners open a link on any phone or laptop. The page works with screen readers and starts with a single keystroke.</p>
+        </div>
+        <div class="benefit reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3>Runs on the presenter's Mac</h3>
+          <p>Works with any slide software and any meeting tool, because it reads the screen and system audio directly.</p>
+        </div>
+        <div class="benefit reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Peer-reviewed and field-tested</h3>
+          <p>Three published studies with blind and low-vision participants, plus a live deployment at an international conference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMPACT (measured) ============ -->
+  <section id="impact" aria-labelledby="impact-h">
+    <div class="wrap">
+      <div class="ocard impact reveal">
+        <div>
+          <span class="eyebrow">The problem we solve</span>
+          <h2 id="impact-h">Slides carry the argument. Blind listeners get the voice-over.</h2>
+          <p class="lede">In lectures, conferences and webinars, the chart, the diagram and the bullet list are where the meaning lives. Presenters rarely describe them. Human describers are scarce and expensive, and recorded descriptions arrive days later. ASPIRE closes that gap while the talk is still happening.</p>
+          <a class="btn btn-amber" href="#research">See the studies</a>
+        </div>
+        <div class="stats" aria-label="Measured results">
+          <div class="stat"><span class="pill amber">Measured</span><div class="big">88.9<small>%</small></div><div class="lbl">comprehension with ASPIRE, up from 50.0% without (DIS 2026, 12 participants)</div></div>
+          <div class="stat"><span class="pill amber">Measured</span><div class="big">91.7<small>%</small></div><div class="lbl">recall with the real-time system, up from 16.7% (ASSETS 2026 pilot)</div></div>
+          <div class="stat"><span class="pill amber">Measured</span><div class="big">4.0<small>s</small></div><div class="lbl">median listener delay behind live, down from 25–30 s</div></div>
+          <div class="stat"><span class="pill amber">Measured</span><div class="big">0</div><div class="lbl">audio dropouts per session, down from 67</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2 id="how-h">A five-stage pipeline on a single laptop</h2>
+        <p>ASPIRE runs on the presenter's Mac. It captures the screen and the system audio, decides when a new slide has appeared, writes a one-sentence description, turns it into speech, and mixes it into the live audio that listeners receive.</p>
+      </div>
+      <div class="pipeline">
+        <div class="step reveal"><h3>Capture</h3><p>Screen video and system audio, straight from macOS. No virtual audio drivers, no plug-ins.</p><span class="tech">ScreenCaptureKit · ffmpeg</span></div>
+        <div class="step reveal"><h3>Detect the slide change</h3><p>Perceptual hashing spots a visual change; a short stability window lets build-ups finish; text and description matching stop repeats.</p><span class="tech">pHash · OCR-text dedup</span></div>
+        <div class="step reveal"><h3>Read and describe</h3><p>On-device OCR extracts the text; a vision-language model writes a short spoken-form description of what matters on the slide.</p><span class="tech">Apple Vision OCR · Claude Haiku 4.5</span></div>
+        <div class="step reveal"><h3>Speak</h3><p>A local neural voice renders the description in under a second, with numbers normalised so they are read correctly.</p><span class="tech">Kokoro TTS, on device</span></div>
+        <div class="step reveal"><h3>Mix and stream</h3><p>A 50 fps mixer places the description in the next natural pause and streams the result to listeners' phones.</p><span class="tech">WebRTC · HLS fallback</span></div>
+      </div>
+
+      <div class="ocard mech reveal">
+        <div class="mech-head">
+          <div>
+            <span class="eyebrow">The core idea</span>
+            <h3>Borrow a few seconds, give them straight back</h3>
+          </div>
+          <div class="mech-controls">
+            <span id="mech-readout" class="mech-readout" aria-live="off">0.0 s · level with live</span>
+            <button id="mech-play" class="btn btn-outline btn-sm" type="button" aria-pressed="false">Play</button>
+          </div>
+        </div>
+        <p class="muted small">Animation runs at 2× speed. Timing comes from the same audio sample you can play below.</p>
+        <svg id="mech-svg" role="img" aria-label="Timeline comparing the live presenter to what an ASPIRE listener hears. Audio passes through untouched until a slide changes. About five seconds later the description is ready and plays at the next pause while the presenter's speech is held. The held speech is then played back at up to 1.5 times speed with pitch preserved until the listener is level with live again."></svg>
+        <div class="mech-legend" aria-hidden="true">
+          <span><i style="background:var(--s1)"></i>presenter's speech</span>
+          <span><i style="background:var(--amber)"></i>spoken slide description</span>
+          <span><i style="background:repeating-linear-gradient(45deg,var(--s1) 0 3px,var(--bg) 3px 5px)"></i>held speech, returned at up to 1.5×</span>
+        </div>
+        <div id="mech-steps" class="mech-steps">
+          <div data-phase="live"><b>1 · Pass-through</b>No standing delay. Audio goes straight to listeners until a slide changes.</div>
+          <div data-phase="describing"><b>2 · Describe in a pause</b>The description waits for a pause of 0.3 s or more, then plays. The presenter's speech is held meanwhile.</div>
+          <div data-phase="catching-up"><b>3 · Reclaim the time</b>Held speech is returned with pitch-preserving time compression, 1.0× up to 1.5× depending on how far behind the listener is.</div>
+          <div data-phase="level"><b>4 · Level again</b>Once the backlog is gone the audio is untouched again. Nothing is cut, nothing is lost.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HEAR IT ============ -->
+  <section id="demo" aria-labelledby="demo-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Hear it</span>
+        <h2 id="demo-h">The same minute of a talk, with and without ASPIRE</h2>
+        <p>A presenter moves to a new slide and keeps talking. Without ASPIRE a blind listener hears only the voice. With ASPIRE the slide is described in the first pause, and the talk catches back up to live within half a minute.</p>
+      </div>
+      <div class="demo-grid">
+        <div class="ocard player">
+          <div class="player-head"><h3>Without ASPIRE</h3><span class="pill">what a blind listener hears today</span></div>
+          <audio id="audio-without" controls preload="none" src="audio/without-aspire.m4a">Your browser cannot play this audio. <a href="audio/without-aspire.m4a">Download the clip.</a></audio>
+          <details class="transcript"><summary>Transcript</summary>
+            <p>So let's move on to the next slide. This is one of my favourite charts in the whole talk. What you're seeing here is the cost of solar electricity over the last ten years, and the trend is remarkable. In 2010, utility-scale solar cost about 38 cents per kilowatt-hour. By 2020, it was down to roughly 5 cents. That is an 87 percent drop in a single decade, faster than almost anyone predicted. And this is the point I really want you to take away: cost, not technology, is what changed the energy conversation. Once solar became the cheapest option on the table, the debate stopped being about whether, and started being about how fast. Keep that in mind, because the next slide looks at wind, and the story there is strikingly similar.</p>
+          </details>
+        </div>
+        <div class="ocard player with">
+          <div class="player-head"><h3>With ASPIRE</h3><span class="pill solid">slide described at the first pause</span></div>
+          <audio id="audio-with" controls preload="none" src="audio/with-aspire.m4a">Your browser cannot play this audio. <a href="audio/with-aspire.m4a">Download the clip.</a></audio>
+          <div class="lag" aria-live="off"><span>Behind live</span><div class="lag-bar" aria-hidden="true"><i id="lag-fill"></i></div><b id="lag-val">0.0 s</b></div>
+          <p class="small muted" id="lag-phase" aria-live="polite">press play</p>
+          <details class="transcript"><summary>Transcript</summary>
+            <p>So let's move on to the next slide. This is one of my favourite charts in the whole talk.</p>
+            <p class="desc"><b>ASPIRE</b>New slide. Line chart titled "Cost of solar electricity", falling from 38 cents to 5 cents per kilowatt-hour, 2010 to 2020.</p>
+            <p>What you're seeing here is the cost of solar electricity over the last ten years, and the trend is remarkable. In 2010, utility-scale solar cost about 38 cents per kilowatt-hour. By 2020, it was down to roughly 5 cents. That is an 87 percent drop in a single decade, faster than almost anyone predicted. And this is the point I really want you to take away: cost, not technology, is what changed the energy conversation. Once solar became the cheapest option on the table, the debate stopped being about whether, and started being about how fast. Keep that in mind, because the next slide looks at wind, and the story there is strikingly similar.</p>
+          </details>
+        </div>
+      </div>
+      <p class="demo-note">About this sample: the insertion point and the catch-up were computed with the production mixer's algorithm and July 2026 settings (0.3 s pause trigger, 2.5 s maximum hold, 1.0–1.5× pitch-preserving catch-up). The voices are synthetic stand-ins so that no real lecture is redistributed; in live use the description is written by Claude Haiku from the actual slide and spoken by the on-device Kokoro voice.</p>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section id="results" aria-labelledby="results-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Results</span>
+        <h2 id="results-h">Measured, not estimated</h2>
+        <p>Two kinds of evidence: controlled studies with blind and low-vision participants, and instrumented engineering sessions of the live system with real listeners connected. Every number below traces to a published paper or to a logged session.</p>
+      </div>
+      <div class="charts">
+        <div class="ocard chart-card reveal" id="chart-comprehension">
+          <div class="chart-head">
+            <div><h3>Understanding the talk</h3><p>Share of comprehension questions answered correctly</p></div>
+            <div class="chart-toggle" role="group" aria-label="View as"><button type="button" data-view="chart" aria-pressed="true">Chart</button><button type="button" data-view="table" aria-pressed="false">Table</button></div>
+          </div>
+          <div class="legend" aria-hidden="true"><span><i style="background:var(--s1-light)"></i>Without ASPIRE</span><span><i style="background:var(--s1)"></i>With ASPIRE</span></div>
+          <div class="chart"><div class="chart-svg"></div><div class="chart-table"></div><div class="tip" role="presentation"></div></div>
+          <p class="chart-foot">Sources: DIS 2026 full paper (DOI 10.1145/3800645.3812965); ASSETS 2026 demo paper (DOI 10.1145/3797867.3841220).</p>
+        </div>
+        <div class="ocard chart-card reveal" id="chart-latency">
+          <div class="chart-head">
+            <div><h3>How far behind live</h3><p>Seconds, before and after the July 2026 engineering work</p></div>
+            <div class="chart-toggle" role="group" aria-label="View as"><button type="button" data-view="chart" aria-pressed="true">Chart</button><button type="button" data-view="table" aria-pressed="false">Table</button></div>
+          </div>
+          <div class="legend" aria-hidden="true"><span><i style="background:var(--s1-light)"></i>Before (June 2026)</span><span><i style="background:var(--s1)"></i>After (July 2026)</span></div>
+          <div class="chart"><div class="chart-svg"></div><div class="chart-table"></div><div class="tip" role="presentation"></div></div>
+          <p class="chart-foot">Source: ASPIRE system architecture and latency performance report, July 2026. Six instrumented sessions, about 3.5 hours of talk audio, ~300 logged events per second.</p>
+        </div>
+      </div>
+      <div class="benefits" style="margin-top:2.2rem">
+        <div class="benefit reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/></svg></div><h3>97% of the session under 10 s behind live</h3><p>Up from roughly 0%. Two thirds of the session is within 5 seconds.</p></div>
+        <div class="benefit reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18M5 10l7-7 7 7"/></svg></div><h3>79% fewer vision-model calls</h3><p>From 184 to 39 per session, through full-frame analysis and three layers of de-duplication. Lower cost per hour.</p></div>
+        <div class="benefit reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div><h3>Cloud model was 6% of the delay</h3><p>The vision call takes 1.8 s. The delay came from the audio pipeline, which is now fixed. A local model would have been slower.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEARCH ============ -->
+  <section id="research" aria-labelledby="research-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Research</span>
+        <h2 id="research-h">Three peer-reviewed steps, one line of work</h2>
+        <p>All by Azizul Haque and Dr. Jonggi Hong at the Interactive Computing Lab, Stevens Institute of Technology. A fourth paper, the first live field study of the system, is under review.</p>
+      </div>
+      <div class="pubs">
+        <article class="ocard pub reveal">
+          <div class="venue"><span class="pill">ASSETS 2025</span><span class="pill">Poster</span></div>
+          <h3>Accessible Slide Presentation via Intelligent Real-time Editing: Insights from a Wizard-of-Oz Study</h3>
+          <p>Four blind and low-vision participants watched talks whose slide descriptions were inserted by hand. The study established what listeners want described, how long descriptions should be, and where in the talk they should land.</p>
+          <p class="result">Result: the design requirements behind everything that followed.</p>
+          <a class="more" href="https://azizulhaque.me/ICLAB/">Lab publications →</a>
+        </article>
+        <article class="ocard pub reveal">
+          <div class="venue"><span class="pill">DIS 2026</span><span class="pill">Full paper</span><span class="pill solid">Best Paper Honorable Mention</span></div>
+          <h3>Enhancing Slide Presentation Accessibility for Blind and Low-Vision Audiences Through Delay-Buffered Editing</h3>
+          <p>The first automated pipeline, evaluated on recorded presentations with twelve blind and low-vision participants.</p>
+          <p class="result">Result: comprehension rose from 50.0% to 88.9%.</p>
+          <a class="more" href="https://doi.org/10.1145/3800645.3812965">Read the paper (ACM DL) →</a>
+        </article>
+        <article class="ocard pub reveal">
+          <div class="venue"><span class="pill">ASSETS 2026</span><span class="pill">Demo</span></div>
+          <h3>ASPIRE: Accessible Slide Presentation via Intelligent Real-time Editing</h3>
+          <p>The real-time system, running live on a laptop and streaming to listeners' phones, piloted with four blind and low-vision participants. Presented in Vila Nova de Gaia, Portugal, October 2026.</p>
+          <p class="result">Result: recall rose from 16.7% to 91.7%.</p>
+          <a class="more" href="https://doi.org/10.1145/3797867.3841220">Read the paper (ACM DL) →</a>
+        </article>
+      </div>
+      <p class="muted small" style="margin-top:1.2rem">Under review: a live field study in which twelve blind and low-vision participants each attended real conference sessions remotely, once with ASPIRE and once without. Results will be published here when the paper is out.</p>
+    </div>
+  </section>
+
+  <!-- ============ JOURNEY ============ -->
+  <section id="journey" aria-labelledby="journey-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How we got here</span>
+        <h2 id="journey-h">From a Wizard-of-Oz study to a live system in eighteen months</h2>
+      </div>
+      <ol class="journey">
+        <li class="reveal"><span class="when">2025</span><h3>The idea is validated by hand</h3><p>A Wizard-of-Oz study with four blind and low-vision participants: talks with human-edited slide descriptions. Listeners wanted short, factual descriptions placed in the pauses, not over the speaker. Presented as a poster at ASSETS 2025.</p></li>
+        <li class="reveal"><span class="when">Early 2026</span><h3>The pipeline is automated</h3><p>Slide detection, AI description and speech synthesis run end to end on recorded talks. Twelve participants, comprehension from 50.0% to 88.9%. Published at DIS 2026 with a Best Paper Honorable Mention.</p></li>
+        <li class="reveal"><span class="when">May 2026</span><h3>It goes live</h3><p>First real-time version: native macOS capture, Claude Haiku vision, an on-device voice, and WebRTC streaming to phones. The reference implementation is released as open source.</p></li>
+        <li class="reveal"><span class="when">July 2026</span><h3>Latency drops from 30 seconds to 4</h3><p>An instrumented measurement campaign finds the real bottleneck in the audio pipeline, not the AI model. Pitch-preserving catch-up, WebRTC-by-default and deadline pacing bring the median delay to 4 s with zero dropouts. The system is then deployed in a live field study at an international HCI conference with twelve blind and low-vision participants.</p></li>
+        <li class="reveal"><span class="when">October 2026</span><h3>Demonstrated at ASSETS 2026</h3><p>The real-time system is presented to the accessibility research community in Portugal. Pilot recall: 16.7% to 91.7%.</p></li>
+        <li class="reveal now"><span class="when">Now</span><h3>From research system to product</h3><p>We are forming the company, lining up university and conference pilots, and raising a pre-seed round to build the one-click product and the integrations customers ask for.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ MARKET ============ -->
+  <section id="market" aria-labelledby="market-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why now</span>
+        <h2 id="market-h">Accessibility is becoming a legal deadline, and talks have moved online</h2>
+        <p>Lectures, conferences and all-hands meetings are streamed by default now, and the obligation to make them accessible is shifting from goodwill to regulation. Live captions solved the audio side. Nobody has solved the slides.</p>
+      </div>
+      <div class="drivers">
+        <div class="ocard driver reveal"><div class="big">2.2 billion</div><p>people worldwide live with a near or distance vision impairment.</p><a class="src" href="https://www.who.int/news-room/fact-sheets/detail/blindness-and-visual-impairment">World Health Organization</a></div>
+        <div class="ocard driver reveal"><div class="big">April 2026</div><p>US public universities and governments must meet WCAG 2.1 AA for web content under the ADA Title II rule, including live and recorded media; smaller entities follow in April 2027.</p><a class="src" href="https://www.ada.gov/resources/2024-03-08-web-rule/">US Department of Justice</a></div>
+        <div class="ocard driver reveal"><div class="big">June 2025</div><p>The European Accessibility Act began to apply, extending accessibility duties to digital products and services across the EU.</p><a class="src" href="https://ec.europa.eu/social/main.jsp?catId=1202">European Commission</a></div>
+      </div>
+      <div class="segments">
+        <div class="seg reveal"><h3>Universities and online education</h3><p>Disability-services offices need a scalable way to make live lectures and recorded courses accessible. ASPIRE runs on the instructor's laptop and needs no change to how they teach.</p></div>
+        <div class="seg reveal"><h3>Conferences and professional events</h3><p>Organisers can offer every remote attendee a described stream with a link, instead of hiring describers for a handful of sessions.</p></div>
+        <div class="seg reveal"><h3>Enterprise video platforms</h3><p>The description engine fits naturally alongside live captions in meeting and webinar platforms, as an integration or a licensed component.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROADMAP ============ -->
+  <section id="roadmap" aria-labelledby="roadmap-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What we are building next</span>
+        <h2 id="roadmap-h">From a validated system to a product people can switch on</h2>
+      </div>
+      <div class="roadmap">
+        <div class="ocard reveal"><span class="phase">Next 6 months</span><h3>Pilot-ready product</h3><ul><li>One-click macOS app with a presenter dashboard; no terminal, no setup</li><li>Pilots with university disability-services offices and two conferences</li><li>Windows support for the presenter side</li><li>Accessibility conformance report (VPAT) for procurement</li></ul></div>
+        <div class="ocard reveal"><span class="phase">6 to 12 months</span><h3>Integrations and reach</h3><ul><li>Zoom, Teams and Webex integration so descriptions reach attendees inside the meeting</li><li>Multilingual descriptions and voices</li><li>Speculative description generation to remove a further 3 to 5 seconds</li><li>Privacy controls: on-device or on-premise vision option for sensitive content</li></ul></div>
+        <div class="ocard reveal"><span class="phase">12 to 24 months</span><h3>Platform</h3><ul><li>API and SDK for video platforms and lecture-capture vendors</li><li>Captions plus descriptions as one accessible live-media bundle</li><li>Recorded-media mode for course libraries and on-demand content</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section id="team" aria-labelledby="team-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Team</span>
+        <h2 id="team-h">Built by the people who did the research</h2>
+      </div>
+      <div class="team">
+        <div class="ocard person reveal">
+          <div class="avatar" aria-hidden="true">AH</div>
+          <div>
+            <h3>Azizul Haque</h3>
+            <div class="role">Co-founder · builds ASPIRE end to end</div>
+            <p>First author of every ASPIRE paper. Designed and engineered the live system, from macOS capture and slide detection to the real-time mixer and the latency work that brought it to 4 seconds. M.Eng. in Applied Artificial Intelligence and research assistant at the Interactive Computing Lab, Stevens Institute of Technology.</p>
+            <div class="links"><a href="https://azizulhaque.me">Website</a><a href="https://github.com/meazizul">GitHub</a><a href="https://www.linkedin.com/in/meazizul">LinkedIn</a><a href="https://orcid.org/0009-0004-4081-7442">ORCID</a></div>
+          </div>
+        </div>
+        <div class="ocard person reveal">
+          <div class="avatar" aria-hidden="true">JH</div>
+          <div>
+            <h3>Dr. Jonggi Hong</h3>
+            <div class="role">Co-founder · research lead</div>
+            <p>Assistant Professor of Computer Science at Stevens Institute of Technology and Director of the Interactive Computing Lab, which designs and evaluates accessible interactions with emerging technology. Human-computer interaction and accessibility researcher; senior author of the ASPIRE research line.</p>
+            <div class="links"><a href="https://azizulhaque.me/ICLAB/">Interactive Computing Lab</a></div>
+          </div>
+        </div>
+      </div>
+      <p class="lab-note">ASPIRE grew out of the Interactive Computing Lab at Stevens Institute of Technology in Hoboken, New Jersey. The studies were approved by the university's Institutional Review Board and conducted with blind and low-vision participants throughout.</p>
+    </div>
+  </section>
+
+  <!-- ============ INVESTORS ============ -->
+  <section id="investors" aria-labelledby="invest-h">
+    <div class="wrap">
+      <div class="ocard invest reveal">
+        <div>
+          <span class="eyebrow">For investors</span>
+          <h2 id="invest-h">Request the investor deck</h2>
+          <p class="lede">We are raising a pre-seed round to turn a peer-reviewed, field-tested research system into a product that universities, event organisers and video platforms can switch on.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Working real-time system today, open-source reference implementation, measured 4 s median delay</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Three peer-reviewed studies, a Best Paper Honorable Mention, and a live field study under review</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Regulatory tailwind: ADA Title II web rule and the European Accessibility Act</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Founding team that did the research and wrote the code</span></li>
+          </ul>
+        </div>
+        <div class="ocard contact-box">
+          <span class="eyebrow">Get in touch</span>
+          <h3>Azizul Haque</h3>
+          <a class="big-mail" href="mailto:ahaque3@stevens.edu?subject=ASPIRE%20investor%20deck">ahaque3@stevens.edu</a>
+          <a class="btn btn-amber" href="mailto:ahaque3@stevens.edu?subject=ASPIRE%20investor%20deck&body=Hi%20Azizul%2C%0A%0AI%20would%20like%20to%20see%20the%20ASPIRE%20investor%20deck.%0A%0AName%3A%0AFund%20%2F%20organisation%3A%0A">Email us for the deck</a>
+          <p class="small muted" style="margin:1rem 0 0">We reply within two business days and are happy to run a live demo over a video call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-tag">Every slide, spoken. Live.</p>
+    <div class="foot-cols">
+      <div><h3>Product</h3><ul><li><a href="#how">How it works</a></li><li><a href="#demo">Hear it</a></li><li><a href="#results">Results</a></li><li><a href="#roadmap">Roadmap</a></li></ul></div>
+      <div><h3>Research</h3><ul><li><a href="https://doi.org/10.1145/3800645.3812965">DIS 2026 paper</a></li><li><a href="https://doi.org/10.1145/3797867.3841220">ASSETS 2026 demo</a></li><li><a href="https://github.com/meazizul/ASPIRE">Source code</a></li><li><a href="https://azizulhaque.me/ICLAB/">Interactive Computing Lab</a></li></ul></div>
+      <div><h3>Company</h3><ul><li><a href="#team">Team</a></li><li><a href="#investors">For investors</a></li><li><a href="mailto:ahaque3@stevens.edu?subject=ASPIRE">Contact</a></li></ul></div>
+      <div><h3>Accessibility</h3><ul><li>This site is designed to WCAG 2.2 AA: keyboard navigable, screen-reader labelled, light, dark and high-contrast modes, reduced motion respected, and every chart has a table view.</li><li><a href="mailto:ahaque3@stevens.edu?subject=ASPIRE%20website%20accessibility">Report an accessibility issue</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> ASPIRE · Azizul Haque and Jonggi Hong · Stevens Institute of Technology</span>
+      <span>Claude is a trademark of Anthropic, PBC. Kokoro is an open-weight text-to-speech model.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/demo-timing.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

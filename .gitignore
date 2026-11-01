@@ -1,0 +1,4 @@
+.DS_Store
+*.wav
+*.aiff
+node_modules/

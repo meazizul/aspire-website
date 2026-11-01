@@ -1,0 +1,36 @@
+# Publishes site/ to https://azizulhaque.me/aspire/ by committing it into the
+# aspire/ folder of the meazizul/meazizul.github.io repository (GitHub Pages).
+#
+# One-time setup (see README "Deployment"):
+#   1. Create a deploy key with write access on meazizul/meazizul.github.io.
+#   2. Save the private half as the Actions secret PAGES_DEPLOY_KEY in this repo.
+name: Deploy to azizulhaque.me/aspire
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/deploy.yml']
+  workflow_dispatch:
+concurrency: { group: pages-deploy, cancel-in-progress: false }
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up deploy key
+        env: { KEY: "${{ secrets.PAGES_DEPLOY_KEY }}" }
+        run: |
+          if [ -z "$KEY" ]; then echo "::error::Secret PAGES_DEPLOY_KEY is not set. See README > Deployment."; exit 1; fi
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+      - name: Sync site/ into meazizul.github.io/aspire/
+        run: |
+          git clone --depth 1 git@github.com:meazizul/meazizul.github.io.git target
+          rsync -a --delete --exclude '.git' site/ target/aspire/
+          cd target
+          git config user.name "aspire-website deploy"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A aspire
+          if git diff --cached --quiet; then echo "No changes to publish."; exit 0; fi
+          git commit -m "Update /aspire from meazizul/aspire-website@${GITHUB_SHA::7}"
+          git push
