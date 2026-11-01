@@ -78,22 +78,23 @@ being its own Pages project. Two ways to publish:
 ./scripts/deploy-local.sh
 ```
 
-**B. Automatically on every push to `main` (one-time setup):**
+**B. Automatically (already set up, nothing to do):**
+
+The personal-site repo `meazizul/meazizul.github.io` has a workflow,
+`.github/workflows/sync-aspire.yml`, that runs every 15 minutes and on demand.
+It clones this public repo, copies `site/` into its `aspire/` folder, stamps the
+CSS/JS links with the commit hash, and commits if anything changed. GitHub Pages
+then rebuilds the site. So a push to `main` here is live within about 15 minutes
+with no further action. To publish immediately instead of waiting, run option A,
+or trigger the sync by hand:
 
 ```bash
-# 1. make a key pair for the Action
-ssh-keygen -t ed25519 -N "" -C "aspire-website deploy" -f /tmp/aspire_deploy
-# 2. give the PUBLIC half write access to the personal-site repo
-gh repo deploy-key add /tmp/aspire_deploy.pub --repo meazizul/meazizul.github.io \
-   --title "aspire-website deploy" --allow-write
-# 3. store the PRIVATE half as a secret in this repo
-gh secret set PAGES_DEPLOY_KEY --repo meazizul/aspire-website < /tmp/aspire_deploy
-rm /tmp/aspire_deploy /tmp/aspire_deploy.pub
+gh workflow run sync-aspire.yml --repo meazizul/meazizul.github.io
 ```
 
-After that, `.github/workflows/deploy.yml` syncs `site/` into
-`meazizul.github.io/aspire/` on each push. GitHub Pages caches for about ten
-minutes, so changes can take a few minutes to show.
+The sync uses only GitHub's built-in token, so there are no keys or secrets to
+manage. (GitHub pauses scheduled workflows in repos with no commits for 60 days;
+any commit to the personal site, including one made by the sync itself, keeps it active.)
 
 ## Rebuilding the audio sample
 
