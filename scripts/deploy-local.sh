@@ -10,6 +10,9 @@ if command -v gh >/dev/null 2>&1; then export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
 git clone --depth 1 https://github.com/meazizul/meazizul.github.io.git "$TMP/target"
 rsync -a --delete --exclude '.git' "$HERE/site/" "$TMP/target/aspire/"
+# stamp the CSS/JS links with the commit hash so browsers and the CDN fetch fresh copies
+VER="$(git -C "$HERE" rev-parse --short HEAD 2>/dev/null || date +%s)"
+sed -i.bak -E "s/\?v=[A-Za-z0-9]+/?v=${VER}/g" "$TMP/target/aspire/index.html" && rm -f "$TMP/target/aspire/index.html.bak"
 cd "$TMP/target"
 # make sure the site is listed in the personal site's sitemap
 if [ -f sitemap.xml ] && ! grep -q 'azizulhaque.me/aspire/' sitemap.xml; then

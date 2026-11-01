@@ -41,6 +41,7 @@ jobs:
         run: |
           git clone --depth 1 git@github.com:meazizul/meazizul.github.io.git target
           rsync -a --delete --exclude '.git' site/ target/aspire/
+          sed -i -E "s/\?v=[A-Za-z0-9]+/?v=${GITHUB_SHA::7}/g" target/aspire/index.html
           cd target
           git config user.name "aspire-website deploy"
           git config user.email "actions@users.noreply.github.com"
