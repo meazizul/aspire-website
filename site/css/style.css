@@ -381,3 +381,10 @@ footer { border-top: 1px solid var(--outline); padding: 3rem 0 2.5rem; margin-to
 :root[data-theme="contrast"] .topbar { border-bottom: 1px solid #FFFFFF; }
 :root[data-theme="contrast"] .btn-outline { border-color: #FFFFFF; }
 :root[data-theme="contrast"] a { text-decoration: underline; }
+
+/* ---------- small screens: keep the utility bar on one or two tidy lines ---------- */
+@media (max-width: 640px) {
+  .topbar .wrap { justify-content: flex-end; }
+  .topbar .wrap > a:first-child { display: none; }
+  .topbar a, .topbar button { white-space: nowrap; }
+}
