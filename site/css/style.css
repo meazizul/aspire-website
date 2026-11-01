@@ -333,10 +333,10 @@ details summary { cursor: pointer; font-weight: 600; color: var(--brand); }
 /* ---------- team ---------- */
 .team { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
 @media (max-width: 760px) { .team { grid-template-columns: 1fr; } }
-.person { display: grid; grid-template-columns: 96px 1fr; gap: 1.2rem; align-items: start; }
+.person { display: grid; grid-template-columns: 128px 1fr; gap: 1.3rem; align-items: start; }
 @media (max-width: 480px) { .person { grid-template-columns: 1fr; } }
-.avatar { width: 96px; height: 96px; border-radius: var(--r-img); background: var(--brand-soft); color: var(--heading); display: grid; place-items: center; font-size: 2rem; font-weight: 500; overflow: hidden; }
-.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.avatar { width: 128px; height: 128px; border-radius: var(--r-img); background: var(--brand-soft); color: var(--heading); display: grid; place-items: center; font-size: 2rem; font-weight: 500; overflow: hidden; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; }
 .person h3 { margin: 0 0 .1rem; font-size: 1.2rem; }
 .person .role { color: var(--brand); font-weight: 600; font-size: .92rem; margin-bottom: .5rem; }
 .person p { font-size: .95rem; color: var(--ink-2); margin: 0 0 .6rem; }
